@@ -1,8 +1,9 @@
+// Animação de entrada ao scroll - VERSÃO CORRIGIDA
 const elementsToAnimate = document.querySelectorAll(
-    "section, .aula-card, .modalidade-card, .gallery-grid img, .about-text, .about-image, .contact-info-side, .form-wrapper"
+    "section, .modalidade-card, .gallery-grid img, .about-text, .about-image, .contact-info-side, .form-wrapper"
 );
 
-// adiciona atributo automaticamente
+// Só adiciona data-animate nos elementos que realmente precisam de entrada
 elementsToAnimate.forEach(el => {
     el.setAttribute("data-animate", "");
 });
@@ -13,11 +14,9 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.classList.add("show");
         }
     });
-}, {
-    threshold: 0.15
-});
+}, { threshold: 0.15 });
 
-// observa tudo
+// Observa apenas os elementos com data-animate
 document.querySelectorAll("[data-animate]").forEach(el => {
     observer.observe(el);
 });
